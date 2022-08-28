@@ -119,8 +119,8 @@ func Execute(d driver.Driver, action string, ctx ocm.Context, octx out.Context, 
 				return errors.Wrapf(err, "mapping %d: assigning image to property %q", v.Image)
 			}
 		}
-
 	}
+
 	ns := "default"
 	if cfg.Namespace != "" {
 		ns = cfg.Namespace

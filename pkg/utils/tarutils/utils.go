@@ -12,7 +12,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package directory
+package tarutils
 
 import (
 	"archive/tar"
@@ -124,7 +124,11 @@ func addFileToTar(fs vfs.FileSystem, tw *tar.Writer, path string, realPath strin
 			if err != nil {
 				return fmt.Errorf("unable to calculate relative path for %s: %w", subFilePath, err)
 			}
-			return addFileToTar(fs, tw, pathutil.Join(path, relPath), subFilePath, opts)
+			err = addFileToTar(fs, tw, pathutil.Join(path, relPath), subFilePath, opts)
+			if err == nil && info.IsDir() {
+				err = vfs.SkipDir
+			}
+			return err
 		})
 		return err
 	case info.Mode().IsRegular():
