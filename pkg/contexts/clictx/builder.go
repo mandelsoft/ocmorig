@@ -54,6 +54,6 @@ func WithInput(r io.Reader) core2.Builder {
 	return core2.Builder{}.WithInput(r)
 }
 
-func New() core2.Context {
-	return core2.Builder{}.New()
+func New(m ...datacontext.BuilderMode) core2.Context {
+	return core2.Builder{}.New(m...)
 }
