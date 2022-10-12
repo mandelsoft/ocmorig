@@ -22,10 +22,13 @@ import (
 
 	"github.com/mandelsoft/logging"
 
+	"github.com/open-component-model/ocm/pkg/common"
 	"github.com/open-component-model/ocm/pkg/errors"
 	ocmlog "github.com/open-component-model/ocm/pkg/logging"
 	"github.com/open-component-model/ocm/pkg/runtime"
 )
+
+const OCM_CONTEXT_SUFFIX = ".context" + common.OCM_TYPE_GROUP_SUFFIX
 
 // BuilderMode controls the handling of unset information in the
 // builder configuration when calling the New method.
@@ -75,7 +78,7 @@ type Context interface {
 ////////////////////////////////////////////////////////////////////////////////
 
 // CONTEXT_TYPE is the global type for an attribute context.
-const CONTEXT_TYPE = "attributes.context.gardener.cloud"
+const CONTEXT_TYPE = "attributes" + OCM_CONTEXT_SUFFIX
 
 type AttributesContext interface {
 	Context
